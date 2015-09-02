@@ -1,10 +1,12 @@
 package flow
 
 import (
+	"net/http"
+
 	"github.com/coralproject/core/log"
 )
 
-type flow struct {
+type Flow struct {
 	name  string
 	steps []*step
 }
@@ -24,33 +26,55 @@ type stepHandler struct {
 
 func (s step) handle() error {
 
-	log.Write("todo: broadcast", s.startTrigger)
-
 	s.action()
-
-	log.Write("todo: broadcast", s.endTrigger)
+	Broadcast(s.endTrigger)
 
 	return nil
 
 }
 
+type FlowHandler struct {
+	F Flow
+}
+
+func (fh FlowHandler) Handle(w http.ResponseWriter, r *http.Request) {
+
+	log.Write("Handling", r, "Running", fh.F)
+
+	go fh.F.Run()
+
+}
+
 var (
-	flows []*flow
+	flows []*Flow
 )
 
-func (f flow) Run() {
+func (f Flow) Run() {
 
 	log.Write("Flow: Running ", f)
 
-	for _, s := range f.steps {
-		s.handle()
+	f.steps[0].handle()
+
+}
+
+// trigger a step
+func Trigger(t string) {
+
+	for _, f := range flows {
+		for _, s := range f.steps {
+
+			if s.startTrigger == t {
+				s.handle()
+			}
+
+		}
 	}
 
 }
 
-func Create(n string) *flow {
+func Create(n string) *Flow {
 
-	f := new(flow)
+	f := new(Flow)
 	f.name = n
 
 	flows = append(flows, f)
@@ -61,7 +85,7 @@ func Create(n string) *flow {
 
 }
 
-func (f *flow) AddStep(n string, st string, et string, a func()) *step {
+func (f *Flow) AddStep(n string, st string, et string, a func()) *step {
 
 	s := new(step)
 	s.name = n

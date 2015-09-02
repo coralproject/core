@@ -3,6 +3,7 @@ package serve
 import (
 	"net/http"
 
+	"github.com/coralproject/core/flow"
 	"github.com/coralproject/core/log"
 )
 
@@ -10,11 +11,22 @@ const (
 	port = "8080"
 )
 
-func RegisterEndpoint(path string, handler http.HandlerFunc) {
+func RegisterHandler(path string, handler http.HandlerFunc) {
 
-	log.Write("Registering Endpoint", path, handler)
+	log.Write("Registering Handler", path, handler)
 
 	http.HandleFunc(path, handler)
+
+}
+
+func RegisterFlow(p string, f *flow.Flow) {
+
+	log.Write("Registering Flow", p, *f)
+
+	fh := new(flow.FlowHandler)
+	fh.F = *f
+
+	http.HandleFunc(p, fh.Handle)
 
 }
 
