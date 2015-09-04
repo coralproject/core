@@ -1,3 +1,31 @@
+/*
+Package config hadles the loading and distribution of configuration
+
+At Present:
+- file: config.json
+- schema:
+
+{
+
+	"Name": "Identity",
+
+	"MySQL": {
+		"username": "",
+		"password": "",
+		"host": "",
+		"port": (int),
+		"database": ""
+	}
+
+}
+
+Future:
+- load from s3
+- load from db
+- deeper schema for more configuratin goodness
+
+*/
+
 package config
 
 import (
@@ -7,10 +35,10 @@ import (
 	"github.com/coralproject/core/log"
 )
 
-const (
-	file = "./config.json"
-)
+// localFile is the localFile
+const localFile = "./config.json"
 
+// MySQL config definition
 type MySQLConfig struct {
 	Username string
 	Password string
@@ -19,25 +47,30 @@ type MySQLConfig struct {
 	Database string
 }
 
+// Top Level Config definition
 type Config struct {
 	Name string
 
 	MySQL MySQLConfig
 }
 
-var (
-	config *Config
-)
+// Pointer to the master config record
+var config *Config
 
+// Load kicks off configuration loading
 func Load() {
-	config = readLocalFile(file)
+	config = readLocalFile(localFile)
 }
 
+// readLocalFile takes a filename (f),
+// * reads the file (Fatal on failure)
+// * unmarshalls (Fatal on failure)
+// * returns the *Config
 func readLocalFile(f string) *Config {
 
 	c := new(Config)
 
-	content, err := ioutil.ReadFile(file)
+	content, err := ioutil.ReadFile(f)
 	if err != nil {
 		log.Fatal("Unable to read config file '%s': %s", f, err)
 	}
@@ -50,6 +83,7 @@ func readLocalFile(f string) *Config {
 
 }
 
+// Get exposes the loaded config to others
 func Get() *Config {
 	return config
 }
