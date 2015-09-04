@@ -83,7 +83,12 @@ func readLocalFile(f string) *Config {
 
 }
 
-// Get exposes the loaded config to others
+// Get exposes the top level config to others
 func Get() *Config {
 	return config
+}
+
+// Get exposes the MySQL config to others
+func GetMySQL() MySQLConfig {
+	return config.MySQL
 }
