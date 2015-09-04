@@ -29,16 +29,19 @@ func Open() *sql.DB {
 	s := connectString(c)
 
 	// open, or so it appears, but not yet
-	Db, err := sql.Open("mysql", s)
+	db, err := sql.Open("mysql", s)
 	if err != nil {
 		log.Fatal("Could not connect to MySQL with", s, err)
 	}
 
 	// Trigger actual open via ping. Validate DSN data:
-	err = Db.Ping()
+	err = db.Ping()
 	if err != nil {
 		log.Fatal("Could not connect to MySQL with", s, err)
 	}
+
+	// set to exported package global
+	Db = db
 
 	return Db
 
