@@ -30,6 +30,10 @@ func RegisterFlow(p string, f *flow.Flow) {
 
 }
 
+func RegisterStaticHandler(p string, r string) {
+	http.Handle(p, http.FileServer(http.Dir(r)))
+}
+
 func Start() {
 
 	log.Write("ListenAndServe on :%n", port)
