@@ -1,5 +1,5 @@
 /*
-Package config hadles the loading and distribution of configuration
+Package config handles the loading and distribution of configuration
 
 At Present:
 - file: config.json
@@ -10,6 +10,13 @@ At Present:
 	"Name": "Identity",
 
 	"MySQL": {
+		"username": "",
+		"password": "",
+		"host": "",
+		"port": (int),
+		"database": ""
+	},
+	"Postgresql": {
 		"username": "",
 		"password": "",
 		"host": "",
@@ -47,11 +54,19 @@ type MySQLConfig struct {
 	Database string
 }
 
+type PostgresqlConfig struct {
+	Username string
+	Password string
+	Host     string
+	Port     int
+	Database string
+}
+
 // Top Level Config definition
 type Config struct {
-	Name string
-
-	MySQL MySQLConfig
+	Name       string
+	MySQL      MySQLConfig
+	Postgresql PostgresqlConfig
 }
 
 // Pointer to the master config record
@@ -91,4 +106,8 @@ func Get() *Config {
 // Get exposes the MySQL config to others
 func GetMySQL() MySQLConfig {
 	return config.MySQL
+}
+
+func GetPostgresql() PostgresqlConfig {
+	return config.Postgresql
 }

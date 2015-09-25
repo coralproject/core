@@ -1,4 +1,4 @@
-package mysql
+package resource
 
 /*
 Package resource/mysql handles the mysql db connection
@@ -10,6 +10,7 @@ Todo:
 
 import (
 	"database/sql"
+
 	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/coralproject/core/config"
@@ -54,7 +55,5 @@ func Close() {
 
 // compose connect string from raw config
 func connectString(c config.MySQLConfig) string {
-
 	return c.Username + ":" + c.Password + "@" + c.Host + "/" + c.Database
-
 }
