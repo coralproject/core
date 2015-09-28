@@ -1,3 +1,8 @@
+/*
+
+Package serve wraps go service methods with coral logging and other functionality
+
+*/
 package serve
 
 import (
