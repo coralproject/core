@@ -46,27 +46,19 @@ import (
 const localFile = "./config.json"
 
 // MySQL config definition
-type MySQLConfig struct {
+type DatabaseConfig struct {
 	Username string
 	Password string
 	Host     string
 	Port     int
 	Database string
-}
-
-type PostgresqlConfig struct {
-	Username string
-	Password string
-	Host     string
-	Port     int
-	Database string
+	Adapter  string
 }
 
 // Top Level Config definition
 type Config struct {
-	Name       string
-	MySQL      MySQLConfig
-	Postgresql PostgresqlConfig
+	Name     string
+	Database DatabaseConfig
 }
 
 // Pointer to the master config record
@@ -104,10 +96,6 @@ func Get() *Config {
 }
 
 // Get exposes the MySQL config to others
-func GetMySQL() MySQLConfig {
-	return config.MySQL
-}
-
-func GetPostgresql() PostgresqlConfig {
-	return config.Postgresql
+func GetDatabase() DatabaseConfig {
+	return config.Database
 }
