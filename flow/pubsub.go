@@ -1,3 +1,10 @@
+/*
+
+A simple notification service designed to work with flow
+
+Status: stub
+
+*/
 package flow
 
 import (
