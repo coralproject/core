@@ -65,8 +65,20 @@ type Config struct {
 var config *Config
 
 // Load kicks off configuration loading
+//  TODO: support multiple config sources
 func Load() {
 	config = readLocalFile(localFile)
+}
+
+func unmarshalConfig(content []byte) (*Config, error) {
+
+	c := new(Config)
+
+	if err := json.Unmarshal(content, &c); err != nil {
+		return nil, err
+	}
+
+	return c, nil
 }
 
 // readLocalFile takes a filename (f),
@@ -75,14 +87,13 @@ func Load() {
 // * returns the *Config
 func readLocalFile(f string) *Config {
 
-	c := new(Config)
-
 	content, err := ioutil.ReadFile(f)
 	if err != nil {
 		log.Fatal("Unable to read config file '%s': %s", f, err)
 	}
 
-	if err = json.Unmarshal(content, &c); err != nil {
+	c, err := unmarshalConfig(content)
+	if err != nil {
 		log.Fatal("Unable to parse JSON in config file '%s': %s", f, err)
 	}
 
