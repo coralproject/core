@@ -9,19 +9,13 @@ At Present:
 
 	"Name": "Identity",
 
-	"MySQL": {
-		"username": "",
-		"password": "",
-		"host": "",
-		"port": (int),
-		"database": ""
-	},
-	"Postgresql": {
-		"username": "",
-		"password": "",
-		"host": "",
-		"port": (int),
-		"database": ""
+	"Database": {
+		"username":  "",
+		"password":  "",
+		"host":      "",
+		"port":     (int),
+		"database": "",
+		"adapter":  ""
 	}
 
 }
@@ -32,7 +26,6 @@ Future:
 - deeper schema for more configuratin goodness
 
 */
-
 package config
 
 import (
@@ -45,7 +38,7 @@ import (
 // localFile is the localFile
 const localFile = "./config.json"
 
-// MySQL config definition
+// Database config definition
 type DatabaseConfig struct {
 	Username string
 	Password string
@@ -106,7 +99,7 @@ func Get() *Config {
 	return config
 }
 
-// Get exposes the MySQL config to others
+// Get exposes the Databae config to others
 func GetDatabase() DatabaseConfig {
 	return config.Database
 }
