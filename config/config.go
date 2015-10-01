@@ -36,16 +36,17 @@ import (
 )
 
 // localFile is the localFile
-const localFile = "./config.json"
+const configFile = "config/config.json"
 
 // Database config definition
 type DatabaseConfig struct {
-	Username string
-	Password string
-	Host     string
-	Port     int
-	Database string
-	Adapter  string
+	Name     string `json:"name"`
+	Username string `json:"username"`
+	Password string `json:"pasword,string,omitempty"`
+	Host     string `json:"host"`
+	Port     int    `json:"port,string,omitempty"`
+	Database string `json:"database"`
+	Adapter  string `json:"adapter"`
 }
 
 // Top Level Config definition
@@ -59,8 +60,8 @@ var config *Config
 
 // Load kicks off configuration loading
 //  TODO: support multiple config sources
-func Load() {
-	config = readLocalFile(localFile)
+func init() {
+	config = readLocalFile(configFile)
 }
 
 func unmarshalConfig(content []byte) (*Config, error) {
