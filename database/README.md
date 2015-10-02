@@ -1,6 +1,29 @@
 # Database layer
 
-Main SQL packages being used in the go ecosystem:
+
+#### Tasks we need to implement related with the db layer
+
+- map query results to structs/classes (serialization)
+- simple CRUD-style object persistence
+- provide programmatic query construction
+- create INSERT schemas or provide schema migration
+- hooks into database usage (ie. logging all query times, pre/post save, etc.)
+- manage database connections
+    - done with dabase/sql library
+- manage caching 
+
+
+#### DBMS being considered
+
+- PostgreSQL
+    - Support for JSONB (that is faster to process and supports indexing)
+- MongoDB
+    - Washington Post is using it
+    - It can help with part of the application where the structure may be changing frequently
+- Neo4J
+    - Popular graph database
+
+#### Main SQL packages being used in the go ecosystem:
 
 - gorp
     - maintained and many people contributing to it
@@ -58,21 +81,9 @@ Main SQL packages being used in the go ecosystem:
     - provides partial support for mongodb
 
 
+## Coral options
 
-Tasks we need to implement related with the db layer
-
-- map query results to structs/classes (serialization)
-- simple CRUD-style object persistence
-- provide programmatic query construction
-- create INSERT schemas or provide schema migration
-- hooks into database usage (ie. logging all query times, pre/post save, etc.)
-- manage database connections
-    - done with dabase/sql library
-- manage caching
-
-Coral options
-
-Go Packages
+### Go Packages
 
 - GORM
   - it is the better maintained of the quasi-ORMs packages
@@ -81,15 +92,7 @@ Go Packages
   - migration package that gorm is lacking of
 - database/sql standard library
 
-DBMS being considered
 
-- PostgreSQL
-    - Support for JSONB (that is faster to process and supports indexing)
-- MongoDB
-    - Washington Post is using it
-    - It can help with part of the application where the structure may be changing frequently
-- Neo4J
-    - Popular graph database
 
 References
 
