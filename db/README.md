@@ -10,7 +10,7 @@
 - hooks into database usage (ie. logging all query times, pre/post save, etc.)
 - manage database connections
     - done with dabase/sql library
-- manage caching 
+- manage caching
 
 
 #### DBMS being considered
@@ -79,7 +79,8 @@
 - upper.io/db
     - supports mysql, postgresql
     - provides partial support for mongodb
-
+    - it works with collection
+    - it does not provide migration or index management (it is a "magic-free orm")
 
 ## Coral options
 
