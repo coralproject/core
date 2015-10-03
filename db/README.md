@@ -56,9 +56,9 @@
     - marshall rows into structs, maps and slices
     - named parameter support including prepared statement
     - get and select to go quickly from query to struct/slice
-- goose
-    - mantained
-    - migration tool
+- goose - LOOKING AT IT
+    - not mantained (looking for a new maintainer)
+    - migration tool- only create scripts to modify the schema
 - squirrel
     - mantained
     - build SQL from composable parts
@@ -88,9 +88,8 @@
 
 - GORM
   - it is the better maintained of the quasi-ORMs packages
+  - it has AutoMigration that creates table. It needs a real migration tool
 - Squirel
-- Goose
-  - migration package that gorm is lacking of
 - database/sql standard library
 
 
