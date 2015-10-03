@@ -10,6 +10,6 @@ import "github.com/jinzhu/gorm"
 
 type Article struct {
 	gorm.Model
-	name      string
-	publisher string
+	Name      string
+	Publisher string
 }

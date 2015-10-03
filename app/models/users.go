@@ -20,6 +20,6 @@ import "github.com/jinzhu/gorm"
 
 type User struct {
 	gorm.Model
-	name string `sql:"size:255"` // screen name
+	Name string `sql:"size:255"` // screen name
 	// expertise
 }

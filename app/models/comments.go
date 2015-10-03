@@ -16,12 +16,12 @@ import (
 
 type Comment struct {
 	gorm.Model
-	content []byte
-	user    User
+	Content []byte
+	User    User
 }
 
 func (comment Comment) validate(db *gorm.DB) {}
 
 func (comment Comment) stringify() string {
-	return fmt.Sprintf("%s", comment.content)
+	return fmt.Sprintf("%s", comment.Content)
 }

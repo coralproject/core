@@ -12,6 +12,6 @@ import "github.com/jinzhu/gorm"
 
 type Recommendation struct {
 	gorm.Model
-	user    User
-	comment Comment
+	User    User
+	Comment Comment
 }
