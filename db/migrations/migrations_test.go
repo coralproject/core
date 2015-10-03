@@ -1,6 +1,8 @@
 package core_test
 
-func test_migrate() {
+func testMigrate() {}
+
+func testMigrateByModel() {
 	// drop table
 	// run migration
 	// check that table is still there

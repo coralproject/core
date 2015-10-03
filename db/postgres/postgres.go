@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/coralproject/core/config"
-	"github.com/jinzhu/gorm"
+	"github.com/gabelula/gorm"
 	_ "github.com/lib/pq"
 )
 
