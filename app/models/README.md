@@ -1,4 +1,5 @@
 # Data Models
+------
 
 Status: Stub
 
@@ -12,7 +13,7 @@ We are going to have several strategies to do the translation/mapping from their
 type: user, item, boolAction, associationAction, externalReference
 
 Schema
-{
+```{
   database: nyt,
 
   "article": {
@@ -103,7 +104,7 @@ Schema
         },
       ]
     }
-}
+}```
 
 #### NYT Comment's fields
 
