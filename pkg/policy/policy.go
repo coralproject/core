@@ -1,5 +1,9 @@
 package policy
 
+import (
+	"github.com/coralproject/core/pkg/data"
+)
+
 type PolicyItem struct {
 	item Item
 }
