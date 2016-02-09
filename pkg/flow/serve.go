@@ -1,9 +1,9 @@
 /*
 
-Package serve wraps go service methods with coral logging and other functionality
+	Example of registering a flow with a basic http handler
 
 */
-package serve
+package flow
 
 import (
 	"net/http"

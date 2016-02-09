@@ -1,3 +1,3 @@
 # Coral Core (prototype)
 
-Initial development of Coral Core using Golang
+This repo is for prototyping concepts, holding architectural discussions and (possibly one day) hosting code to be vendored.
